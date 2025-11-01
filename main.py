@@ -9,6 +9,7 @@ from prompt_templates.user_prompts import get_product_detail_extractor_agent_use
 from product_mapping.product_mapping_agent import get_product_recommendations, get_available_products
 from product_details.product_details_agent import fetch_product_details
 
+# To start the Flask app, run: python -m flask --app main run
 
 app = Flask(__name__)
 user_requirements_conversation = [
@@ -53,7 +54,7 @@ def product_details_extractor(user_message: str) -> str:
 
 def get_product_recommendations_response(user_requirements: dict) -> str:
     df_recommendations = get_product_recommendations(user_requirements)
-    df_recommendations = df_recommendations.drop(columns=['laptop_feature', 'recommendation_score', 'Description', 'Special Features', 'Clock Speed', 'OS', 'Average Battery Life', 'Storage Type', 'Display Type', 'Screen Resolution', 'Warranty'])
+    df_recommendations = df_recommendations.drop(columns=['laptop_feature_map', 'recommendation_score', 'Description', 'Special Features', 'Clock Speed', 'OS', 'Average Battery Life', 'Storage Type', 'Display Type', 'Screen Resolution', 'Warranty'])
     product_details_conversation.append(
         {"role": "system", "content": get_product_detail_extractor_agent_system_prompt(', '.join(df_recommendations.apply(lambda row: f"{row['Brand']} {row['Model Name']}", axis=1).tolist()))},
     )
