@@ -41,7 +41,6 @@ def conversation_stage_classifier() -> bool:
         {"role": "user", "content": "Conversation history: ```json " + json.dumps(user_requirements_conversation) + " ```"}
     ]
     classification_response = ai_utils.perform_chat_completion(classifier_messages)
-    print("Conversation Stage Classification Response:", classification_response)
     return "true" in classification_response
 
 def product_details_extractor(user_message: str) -> str:
