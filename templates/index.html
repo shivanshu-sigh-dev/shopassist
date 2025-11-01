@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopAssist</title>
+
+    <script src="../static/js/chatux.min.js"></script>
+
+    <style>
+        table, td, th {
+            border: 1px solid;
+            padding: 5px;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Welcome to ShopAssist!</h1>
+    <script>
+        const chatUxWindow = new ChatUx();
+        chatUxWindow.init({
+            api: {
+                endpoint: '/chat',
+                method: 'GET',
+                dataType: 'jsonp',
+                escapeUserInput: true,
+            },
+            bot: {
+                botPhoto: '/static/img/chat-bot.png',
+                humanPhoto: '/static/img/user.png',
+                widget: {
+                    sendLabel: 'Send',
+                    placeHolder: 'Enter your message here...'
+                }
+            },
+            window: {
+                title: 'ShopAssist Sales Bot 🤖',
+                infoUrl: '/',
+                size: {
+                    width: 1050,
+                    height: 900,
+                    minWidth: 700,
+                    minHeight: 700,
+                    titleHeight: 50
+                }
+            }
+        });
+        chatUxWindow.start(true);
+    </script>
+</body>
+
+</html>
